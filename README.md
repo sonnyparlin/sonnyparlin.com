@@ -26,11 +26,16 @@ Then open http://127.0.0.1:8765. Any static server works (the folder is plain HT
 ## Deploy
 
 The site is hosted on Vercel as project `sonny-parlin`, live at https://sonnyparlin.com (DNS at GoDaddy: A @ 76.76.21.21, CNAME www cname.vercel-dns.com). `vercel.json` redirects www to the bare domain. Fallback URL: https://sonny-parlin.vercel.app.
-`.vercelignore` keeps `photos/`, `proposals/`, and `.claude/` out of the upload. To push a new version:
+`.vercelignore` keeps `photos/`, `proposals/`, and `.claude/` out of the upload.
+
+Source lives at https://github.com/sonnyparlin/sonnyparlin.com and the Vercel project is connected to it,
+so every push to `main` deploys to production automatically:
 
 ```bash
-npx vercel deploy --prod --yes
+git add -A && git commit -m "Describe the change" && git push
 ```
+
+A manual deploy still works if ever needed: `npx vercel deploy --prod --yes`.
 
 Any other static host works too: upload `index.html`, `style.css`, `site.js`, and `img/`.
 
