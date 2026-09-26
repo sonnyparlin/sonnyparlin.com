@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal C · The Mat</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050506;--ink:#f5f3ee;--ink2:#a9a59d;--ink3:#5f5c56;--red:#c8102e;--red2:#ff2d4a;--line:#1c1c20;--head:"Barlow Condensed",Impact,sans-serif;--body:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.6 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+/* cursor glow */
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;left:-999px;top:-999px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(200,16,46,.22),transparent 60%);transition:left .12s linear,top .12s linear}
+/* dot rail nav */
+.dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:18px}
+.dots a{width:8px;height:8px;border-radius:50%;background:#3a3a40;display:block;position:relative}
+.dots a.on{background:var(--red2);box-shadow:0 0 0 5px rgba(255,45,74,.18)}
+.dots a::after{content:attr(data-l);position:absolute;right:20px;top:50%;transform:translateY(-50%);font:500 11px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);opacity:0;white-space:nowrap;transition:.2s}
+.dots a:hover::after,.dots a.on::after{opacity:1}
+@media(max-width:820px){.dots{right:12px}}
+/* minimal top */
+.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(18px,4vw,44px);mix-blend-mode:difference}
+.top b{font:800 18px var(--head);letter-spacing:.14em;text-transform:uppercase}
+.top a{font:500 12px var(--body);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+/* ===== Hero: full-bleed, name pinned to the floor ===== */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 30%;filter:grayscale(.35) contrast(1.1);transform:scale(1.08);animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.0) translateY(-1.5%)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.35),rgba(5,5,6,0) 35%,rgba(5,5,6,.2) 60%,var(--bg) 100%),linear-gradient(90deg,rgba(200,16,46,.28),transparent 50%)}
+.hero .name{position:absolute;left:clamp(18px,4vw,44px);right:clamp(18px,4vw,44px);bottom:6vh;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.hero h1{margin:0;font:900 clamp(96px,17vw,270px)/.8 var(--head);text-transform:uppercase;letter-spacing:-.01em}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.hero .meta{max-width:300px;text-align:right;font-size:14px;color:var(--ink2);padding-bottom:14px}
+.hero .meta b{display:block;color:var(--ink);font:800 26px var(--head);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:500 10px var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--ink3);z-index:2}
+.scroll::after{content:"";display:block;width:1px;height:38px;background:var(--red2);margin:10px auto 0;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scaleY(.4);opacity:.4}}
+@media(max-width:820px){.hero .name{flex-direction:column;align-items:start}.hero .meta{text-align:left}}
+
+/* ===== Sticky split timeline: year counter pinned left, belts scroll right ===== */
+.years{display:grid;grid-template-columns:1fr 1fr;max-width:1300px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.years .pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center}
+.years .pin small{font:500 12px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--red2)}
+.years .pin .yr{font:900 clamp(120px,18vw,300px)/.85 var(--head);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.years .pin p{color:var(--ink2);max-width:360px;font-size:16px}
+.years .pin .swatch{width:120px;height:16px;margin-top:20px;background:var(--sw,#e9e6df);transition:background .4s;position:relative}
+.years .pin .swatch::after{content:"";position:absolute;right:10px;top:0;bottom:0;width:26px;background:var(--tip,transparent)}
+.steps{padding:30vh 0 30vh}
+.step{min-height:70vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 40px clamp(20px,5vw,80px);border-left:1px solid var(--line);position:relative}
+.step::before{content:"";position:absolute;left:-5px;top:50%;width:9px;height:9px;border-radius:50%;background:var(--ink3);transition:.3s}
+.step.on::before{background:var(--red2);box-shadow:0 0 0 8px rgba(255,45,74,.15)}
+.step h3{font:800 clamp(34px,4vw,56px)/1 var(--head);text-transform:uppercase;margin:0 0 10px;color:var(--ink3);transition:color .3s}
+.step.on h3{color:var(--ink)}
+.step p{color:var(--ink2);margin:0;max-width:420px}
+.step img{width:min(100%,420px);aspect-ratio:3/2;object-fit:cover;margin-top:22px;filter:grayscale(1);opacity:.5;transition:.5s}
+.step.on img{filter:none;opacity:1}
+@media(max-width:820px){.years{grid-template-columns:1fr}.years .pin{position:sticky;height:auto;padding:30px 0 10px;background:linear-gradient(var(--bg) 80%,transparent)}.years .pin .yr{font-size:96px}.steps{padding:0 0 10vh}.step{min-height:auto;padding:30px 0 30px 24px}}
+
+/* ===== Horizontal gallery ===== */
+.hgal{padding:12vh 0}
+.hgal h2{font:900 clamp(48px,7vw,110px)/.85 var(--head);text-transform:uppercase;margin:0 clamp(18px,4vw,44px) 26px}
+.hgal h2 span{color:var(--red2)}
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px clamp(18px,4vw,44px) 30px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track figure{margin:0;flex:0 0 min(78vw,640px);scroll-snap-align:start;position:relative}
+.track img{width:100%;aspect-ratio:16/10;object-fit:cover;filter:grayscale(.6) contrast(1.05);transition:filter .5s}
+.track figure:hover img{filter:none}
+.track figcaption{position:absolute;left:0;bottom:0;padding:16px;font:800 44px/1 var(--head);color:var(--ink);mix-blend-mode:difference}
+.hint{margin:0 clamp(18px,4vw,44px);font:500 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--ink3)}
+
+.foot{border-top:1px solid var(--line);padding:34px clamp(18px,4vw,44px);color:var(--ink3);font:500 12px var(--body);letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<div id="glow"></div>
+<div class="top"><b>Sonny Parlin</b><a href="https://graciebradenton.com">Train with me</a></div>
+<div class="dots"><a href="#top" data-l="Intro" class="on"></a><a href="#years" data-l="The years"></a><a href="#gal" data-l="Competition"></a><a href="#" data-l="Academy"></a><a href="#" data-l="Life"></a></div>
+
+<section class="hero" id="top">
+  <img src="../img/comp-hand-raised.jpg" alt="">
+  <div class="name">
+    <h1>Sonny<span>Parlin</span></h1>
+    <div class="meta"><b>2nd degree black belt</b>Helio Gracie → Royce Gracie → Rob Kahn → Sonny Parlin. On the mat since September 4, 2007. Founder of Gracie Bradenton.</div>
+  </div>
+  <div class="scroll">Scroll</div>
+</section>
+
+<section class="years" id="years">
+  <div class="pin">
+    <small>The years</small>
+    <div class="yr" id="yr">2007</div>
+    <p id="yrp">A first class in West Hartford, Connecticut. Thirty-four years old, no idea what was coming.</p>
+    <div class="swatch" id="sw"></div>
+  </div>
+  <div class="steps">
+    <div class="step" data-y="2007" data-sw="#e9e6df" data-tip="transparent" data-t="A first class in West Hartford, Connecticut. Thirty-four years old, no idea what was coming."><h3>White belt</h3><p>September 4, 2007. The day everything else in my life started organizing itself around a mat.</p></div>
+    <div class="step" data-y="2009" data-sw="#2a62c4" data-tip="transparent" data-t="Royce Gracie ties on the blue belt. It still doesn't feel real."><h3>Blue belt</h3><p>January 28, 2009. Promoted by Royce Gracie.</p></div>
+    <div class="step" data-y="2010" data-sw="#6f3fb0" data-tip="transparent" data-t="Purple. The belt where you finally stop surviving and start playing."><h3>Purple belt</h3><p>July 11, 2010. Promoted by Marco DeLima.</p></div>
+    <div class="step" data-y="2015" data-sw="#7c4b2a" data-tip="transparent" data-t="Brown belt from Rob Kahn, and the year Gracie Bradenton opens its doors."><h3>Brown belt</h3><p>January 18, 2015. Promoted by Rob Kahn in Tampa. Gracie Bradenton opens the same year.</p><img src="../img/training-back-control.jpg" alt=""></div>
+    <div class="step" data-y="2017" data-sw="#151515" data-tip="#c8102e" data-t="Black belt. Ten years and one day after the first class."><h3>Black belt</h3><p>September 3, 2017. Promoted by Rob Kahn in front of family and close friends.</p></div>
+    <div class="step" data-y="2023" data-sw="#151515" data-tip="#c8102e" data-t="First degree. The belt starts to fray, which is the point."><h3>1st degree</h3><p>September 30, 2023. Promoted by Rob Kahn.</p></div>
+    <div class="step" data-y="2026" data-sw="#151515" data-tip="#c8102e" data-t="Second degree from Professor Robby Donofrio. Nineteen years of showing up."><h3>2nd degree</h3><p>July 30, 2026. Promoted by Robby Donofrio of Gracie Brandon.</p><img src="../img/black-belts.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="hgal" id="gal">
+  <h2>White belt to black belt.<br><span>Zero regrets.</span></h2>
+  <div class="track">
+    <figure><img src="../img/comp-hand-raised.jpg" alt=""><figcaption>01</figcaption></figure>
+    <figure><img src="../img/comp-flo-stream.jpg" alt=""><figcaption>02</figcaption></figure>
+    <figure><img src="../img/comp-ibjjf-standing.jpg" alt=""><figcaption>03</figcaption></figure>
+    <figure><img src="../img/comp-seated-guard.jpg" alt=""><figcaption>04</figcaption></figure>
+    <figure><img src="../img/comp-copa-guard.jpg" alt=""><figcaption>05</figcaption></figure>
+    <figure><img src="../img/comp-gi-match.jpg" alt=""><figcaption>06</figcaption></figure>
+  </div>
+  <p class="hint">Drag or scroll sideways · snaps to each photo</p>
+</section>
+
+<div class="foot"><span>Proposal C · The Mat</span><span>Mockup · full-bleed hero, pinned year counter, horizontal gallery</span></div>
+
+<script>
+// cursor glow
+var g=document.getElementById('glow');
+addEventListener('pointermove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
+// pinned year counter follows the belt steps
+var steps=[].slice.call(document.querySelectorAll('.step')),yr=document.getElementById('yr'),yrp=document.getElementById('yrp'),sw=document.getElementById('sw');
+function tick(){var mid=innerHeight*0.5,cur=steps[0];steps.forEach(function(s){if(s.getBoundingClientRect().top<mid)cur=s});
+  steps.forEach(function(s){s.classList.toggle('on',s===cur)});
+  if(yr.textContent!==cur.dataset.y){animateYear(parseInt(yr.textContent,10),parseInt(cur.dataset.y,10))}
+  yrp.textContent=cur.dataset.t;sw.style.setProperty('--sw',cur.dataset.sw);sw.style.setProperty('--tip',cur.dataset.tip)}
+var raf;function animateYear(a,b){cancelAnimationFrame(raf);var t0=performance.now();(function f(t){var p=Math.min(1,(t-t0)/450);yr.textContent=Math.round(a+(b-a)*(1-Math.pow(1-p,3)));if(p<1)raf=requestAnimationFrame(f)})(t0)}
+addEventListener('scroll',tick,{passive:true});tick();
+</script>
+<script src="_switcher.js"></script>
+</body>
+</html>

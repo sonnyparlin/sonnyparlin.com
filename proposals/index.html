@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design proposals · Sonny Parlin</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0e10;--ink:#f3f1ec;--ink2:#b9b5ad;--ink3:#7d7a74;--line:#2a2a30;--red:#c8102e;--red2:#e3243f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding:60px clamp(16px,4vw,48px) 120px}
+h1{font:800 clamp(44px,7vw,84px)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 10px}
+.lede{color:var(--ink2);max-width:640px;margin:0 0 44px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1300px}
+.card{border:1px solid var(--line);background:#141417;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--red)}
+.card .pv{aspect-ratio:4/3;overflow:hidden;position:relative;background:#000}
+.card .pv img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.card .body{padding:20px 22px 24px}
+.card .tag{font:700 12px "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--red2)}
+.card h2{font:800 30px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:6px 0 10px}
+.card p{color:var(--ink2);font-size:14px;margin:0 0 12px}
+.card ul{margin:0;padding:0;list-style:none;font-size:13px;color:var(--ink3)}
+.card li{padding:5px 0;border-top:1px solid var(--line)}
+.card li b{color:var(--ink2);font-weight:500}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+.note{max-width:760px;margin:56px 0 0;padding:22px 26px;border-left:3px solid var(--red);color:var(--ink2);font-size:15px}
+.note b{color:var(--ink)}
+</style>
+</head>
+<body>
+<h1>Round two.</h1>
+<p class="lede">Three new directions drawn from what is winning on Siteinspire, Awwwards, Httpster and Site of Sites right now: lighter palettes, big tight grotesk or quiet serif type, one hero object, photos inline with the words, and data shown as clean tables. Click a card to scroll through it.</p>
+
+<div class="cards">
+  <a class="card" href="d-matwhite.html">
+    <div class="pv"><img src="preview/d-matwhite.jpg" alt="Preview of proposal D"></div>
+    <div class="body">
+      <span class="tag">Proposal D</span>
+      <h2>Mat White</h2>
+      <p>Warm cream, near-black, one blue accent lifted from your gi. A giant sentence-case headline with small photos set inline, a blue-washed full-bleed training photo, belts as a tour-dates table, and a live "on the mat for 19.05 years" counter in the nav.</p>
+      <ul>
+        <li><b>Feel</b> Noho, Paul Kalkbrenner, bleibtgleich</li>
+        <li><b>Signature</b> Photos inside the headline, live years counter, colour-wash photo block</li>
+        <li><b>Risk</b> Low. This is what the galleries are rewarding in 2026.</li>
+      </ul>
+    </div>
+  </a>
+  <a class="card" href="e-sticker.html">
+    <div class="pv"><img src="preview/e-sticker.jpg" alt="Preview of proposal E"></div>
+    <div class="body">
+      <span class="tag">Proposal E</span>
+      <h2>Sticker</h2>
+      <p>Deep navy, cream and a coral red. Your portrait as a die-cut sticker with a thick white edge, belt-colour badges floating around it, a torn-paper divider, round stat badges, and a swipeable strip of sticker cards.</p>
+      <ul>
+        <li><b>Feel</b> Trevor Noah, Warm &amp; Fuzzy, bleibtgleich</li>
+        <li><b>Signature</b> Die-cut portrait, belt stickers, torn edge, pill buttons</li>
+        <li><b>Risk</b> Medium. Most personality; needs a proper background-removed photo.</li>
+      </ul>
+    </div>
+  </a>
+  <a class="card" href="f-journal.html">
+    <div class="pv"><img src="preview/f-journal.jpg" alt="Preview of proposal F"></div>
+    <div class="body">
+      <span class="tag">Proposal F</span>
+      <h2>Journal</h2>
+      <p>Pale blue-grey paper and a quiet serif. The hero is one object: your portrait as a magazine cover with a black-belt spine. Sections are a contents list, every belt is a back issue you can page through, and the story reads like an essay.</p>
+      <ul>
+        <li><b>Feel</b> The Surfer's Journal Archives, Snøhetta, Léo Parpeix</li>
+        <li><b>Signature</b> Cover object, contents list, belts as issues</li>
+        <li><b>Risk</b> Low to medium. Calm and grown-up; least "fight" energy.</li>
+      </ul>
+    </div>
+  </a>
+</div>
+
+<h1 style="margin-top:80px">Round one.</h1>
+<p class="lede">The first three, kept for reference. A is what the live site runs today.</p>
+
+<div class="cards">
+  <a class="card" href="a-editorial.html">
+    <div class="pv"><img src="preview/a-editorial.jpg" alt="Preview of proposal"></div>
+    <div class="body">
+      <span class="tag">Proposal A</span>
+      <h2>Black Belt Editorial</h2>
+      <p>The belt becomes the interface. The nav is a literal black belt with a red bar and two stripes; a rank rail on the left doubles as section navigation and belt-colour progress.</p>
+      <ul>
+        <li><b>Feel</b> Magazine cover meets fight programme</li>
+        <li><b>Signature</b> Belt-bar nav, drop caps, duotone hero, colour-on-hover gallery</li>
+        <li><b>Risk</b> Lowest. Most familiar reading pattern.</li>
+      </ul>
+    </div>
+  </a>
+  <a class="card" href="b-poster.html">
+    <div class="pv"><img src="preview/b-poster.jpg" alt="Preview of proposal"></div>
+    <div class="body">
+      <span class="tag">Proposal B</span>
+      <h2>Fight Night Poster</h2>
+      <p>Cream paper, halftone grain, stacked headline in red ink, stamps, a tale-of-the-tape table and a lineage fight card. Light theme, loud personality.</p>
+      <ul>
+        <li><b>Feel</b> Tournament poster stapled to a gym wall</li>
+        <li><b>Signature</b> Paper texture, stamps, tale of the tape, pasted-photo wall</li>
+        <li><b>Risk</b> Medium. Boldest personality, needs restraint to stay readable.</li>
+      </ul>
+    </div>
+  </a>
+  <a class="card" href="c-cinematic.html">
+    <div class="pv"><img src="preview/c-cinematic.jpg" alt="Preview of proposal"></div>
+    <div class="body">
+      <span class="tag">Proposal C</span>
+      <h2>The Mat</h2>
+      <p>Full-bleed photography, a pinned year counter that ticks from 2007 to 2026 as the belts scroll past, a horizontal snap gallery, and a cursor glow. Minimal chrome, maximum atmosphere.</p>
+      <ul>
+        <li><b>Feel</b> Documentary film title sequence</li>
+        <li><b>Signature</b> Scroll-driven year counter, dot rail nav, drifting hero</li>
+        <li><b>Risk</b> Highest. Motion-heavy; needs careful mobile fallbacks.</li>
+      </ul>
+    </div>
+  </a>
+</div>
+
+<p class="note"><b>Recommendation, round two:</b> D. It is the direction the galleries are rewarding right now, it photographs your gi blue instead of fighting it with red, and the inline-photo headline gives the site a signature move in the first second. If you want more fun, E; if you want more calm, F.</p>
+<script src="_switcher.js"></script>
+</body>
+</html>

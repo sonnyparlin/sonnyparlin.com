@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal F · Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9ecf1;--bg2:#dfe3ea;--ink:#141621;--ink2:#5a5f6e;--ink3:#9096a6;--line:#c9ceda;--accent:#1f3a93;--serif:"Instrument Serif",Georgia,serif;--body:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px clamp(16px,3vw,40px);font:500 15px var(--body)}
+.nav a{text-decoration:none}
+.nav .mark{font:400 26px var(--serif);letter-spacing:.02em;text-align:center}
+.nav .r{text-align:right}
+
+/* hero: one cover object */
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:90px clamp(16px,3vw,40px) 30px}
+.cover-wrap{display:grid;place-items:center}
+.cover{position:relative;width:min(78vw,400px);aspect-ratio:3/4;background:#fff;box-shadow:0 30px 60px rgba(20,22,33,.22),0 2px 6px rgba(20,22,33,.15);display:grid;grid-template-columns:22px 1fr;overflow:hidden;transition:transform .5s}
+.cover:hover{transform:translateY(-6px) rotate(-.6deg)}
+.cover .spine{background:#151515;position:relative}
+.cover .spine::after{content:"";position:absolute;left:0;right:0;bottom:12%;height:16%;background:#c8102e}
+.cover .spine i{position:absolute;left:0;right:0;bottom:19%;height:2px;background:#fff}
+.cover .spine i+i{bottom:23%}
+.cover .face{position:relative;min-height:0}
+.cover .face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;filter:contrast(1.05) saturate(.9)}
+.cover .title{position:absolute;left:18px;right:18px;top:18px;color:#fff;font:400 22px var(--serif);letter-spacing:.06em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.cover .vol{position:absolute;right:18px;bottom:16px;color:#fff;font:italic 400 22px var(--serif);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.hero .bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;padding-top:20px}
+.hero .bar .yr{font:400 clamp(44px,7vw,84px)/1 var(--serif);letter-spacing:-.01em}
+.hero .bar .mid{font:500 14px var(--body);color:var(--ink2);border-bottom:1px solid var(--ink);padding-bottom:2px}
+.hero .bar .r{text-align:right}
+
+/* chapters list like snøhetta */
+.sec{max-width:1200px;margin:0 auto;padding:clamp(60px,8vw,120px) clamp(16px,3vw,40px)}
+.kicker{font:500 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0 0 20px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.list li{display:grid;grid-template-columns:60px 1fr auto;align-items:baseline;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.list li a{text-decoration:none;display:contents}
+.list .n{font:500 13px var(--body);color:var(--ink3)}
+.list .t{font:400 clamp(30px,4vw,54px)/1 var(--serif)}
+.list .t em{color:var(--accent)}
+.list .d{font:400 15px var(--body);color:var(--ink2);text-align:right;max-width:320px}
+.list li:hover .t{color:var(--accent)}
+@media(max-width:640px){.list li{grid-template-columns:40px 1fr}.list .d{display:none}}
+
+/* issues row: belts as covers */
+.issues{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
+.iss{aspect-ratio:3/4;background:#fff;box-shadow:0 10px 24px rgba(20,22,33,.14);display:grid;grid-template-columns:10px 1fr;overflow:hidden;position:relative}
+.iss .sp{background:var(--c)}
+.iss .sp.k{position:relative;background:#151515}
+.iss .sp.k::after{content:"";position:absolute;left:0;right:0;bottom:12%;height:16%;background:#c8102e}
+.iss .in{padding:10px 8px;display:flex;flex-direction:column;justify-content:space-between}
+.iss .in b{font:400 15px/1 var(--serif);letter-spacing:.04em;text-transform:uppercase}
+.iss .in span{font:400 12px var(--body);color:var(--ink2)}
+.iss .in i{font:italic 400 30px/1 var(--serif);color:var(--ink)}
+@media(max-width:820px){.issues{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:520px){.issues{grid-template-columns:repeat(2,1fr)}}
+
+/* essay */
+.essay{max-width:760px}
+.essay h2{font:400 clamp(36px,5vw,64px)/1.05 var(--serif);margin:0 0 24px;letter-spacing:-.01em}
+.essay h2 em{color:var(--accent)}
+.essay p{font-size:18px;color:#2c3040}
+.essay p::first-letter{font:400 4.2em/.8 var(--serif);float:left;margin:8px 10px 0 0;color:var(--accent)}
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+.spread img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.85)}
+@media(max-width:640px){.spread{grid-template-columns:1fr}}
+
+.foot{border-top:1px solid var(--ink);margin:0 clamp(16px,3vw,40px);padding:24px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 13px var(--body);color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="nav"><a href="#">Menu</a><a class="mark" href="#">SP</a><a class="r" href="#">Library</a></header>
+
+<section class="hero">
+  <div class="cover-wrap">
+    <div class="cover">
+      <div class="spine"><i></i><i></i></div>
+      <div class="face">
+        <img src="../img/portrait-gi-tampa.jpg" alt="">
+        <div class="title">Sonny Parlin</div>
+        <div class="vol">Vol. 19</div>
+      </div>
+    </div>
+  </div>
+  <div class="bar">
+    <div class="yr">2007</div>
+    <div class="mid">Nineteen volumes (7 belts)</div>
+    <div class="yr r">2nd°</div>
+  </div>
+</section>
+
+<section class="sec">
+  <p class="kicker">Contents</p>
+  <ul class="list">
+    <li><span class="n">01</span><span class="t">The <em>story</em></span><span class="d">West Hartford, 2007. A first class that organised everything after it.</span></li>
+    <li><span class="n">02</span><span class="t">Lineage</span><span class="d">Helio Gracie to Royce Gracie to Bradenton.</span></li>
+    <li><span class="n">03</span><span class="t">Gracie <em>Bradenton</em></span><span class="d">A school with no pedestals, est. 2015. With Kate Young.</span></li>
+    <li><span class="n">04</span><span class="t">Competition</span><span class="d">White belt to black belt, retired 2018.</span></li>
+    <li><span class="n">05</span><span class="t">Off the <em>mat</em></span><span class="d">Faith, 28 years of marriage, Jake, chess, code, and music.</span></li>
+  </ul>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <p class="kicker">Back issues · every belt</p>
+  <div class="issues">
+    <div class="iss"><div class="sp" style="--c:#ebe8e1"></div><div class="in"><b>White</b><i>’07</i><span>Sep 4</span></div></div>
+    <div class="iss"><div class="sp" style="--c:#2a5bd7"></div><div class="in"><b>Blue</b><i>’09</i><span>Royce Gracie</span></div></div>
+    <div class="iss"><div class="sp" style="--c:#6f3fb0"></div><div class="in"><b>Purple</b><i>’10</i><span>Jul 11</span></div></div>
+    <div class="iss"><div class="sp" style="--c:#7c4b2a"></div><div class="in"><b>Brown</b><i>’15</i><span>Tampa</span></div></div>
+    <div class="iss"><div class="sp k"></div><div class="in"><b>Black</b><i>’17</i><span>Sep 3</span></div></div>
+    <div class="iss"><div class="sp k"></div><div class="in"><b>1st°</b><i>’23</i><span>Sep 30</span></div></div>
+    <div class="iss"><div class="sp k"></div><div class="in"><b>2nd°</b><i>’26</i><span>Robby Donofrio</span></div></div>
+  </div>
+</section>
+
+<section class="sec essay" style="padding-top:0">
+  <h2>It never got easier. <em>I got better at being uncomfortable.</em></h2>
+  <p>I walked onto the mat for the first time on September 4, 2007, in West Hartford, Connecticut. I was 34. I had no idea that a single class would turn into the thing that organises the rest of my life. Royce Gracie tied my blue belt on in 2009. On July 30, 2026, Professor Robby Donofrio tied on the second stripe.</p>
+  <div class="spread"><img src="../img/training-back-control.jpg" alt=""><img src="../img/black-belts.jpg" alt="" style="object-position:50% 20%"></div>
+</section>
+
+<div class="foot"><span>Proposal F · Journal</span><span>Inspired by The Surfer’s Journal Archives, Snøhetta, Léo Parpeix</span></div>
+<script src="_switcher.js"></script>
+</body>
+</html>

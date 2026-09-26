@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal D · Mat White</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1eee9;--bg2:#e7e2da;--ink:#191919;--ink2:#5c5852;--ink3:#9b968e;--blue:#2a5bd7;--blue2:#dfe7fb;--line:#d6d0c6;
+--head:"Inter Tight",Inter,system-ui,sans-serif;--body:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+
+/* nav: three boxed cells like noho */
+.nav{position:sticky;top:0;z-index:30;background:var(--bg);padding:14px clamp(16px,3vw,40px);display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:stretch}
+.cell{border:1px solid var(--line);background:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;font:600 15px var(--head);letter-spacing:-.01em}
+.cell.name{font-size:18px}
+.cell.live{justify-content:space-between}
+.cell.live b{font:500 13px var(--body);color:var(--ink2)}
+.cell.live span{background:var(--blue2);color:var(--blue);padding:3px 10px;border-radius:999px;font:600 13px var(--body);font-variant-numeric:tabular-nums}
+.cell.menu{gap:18px}
+.cell.menu a{text-decoration:none;font:500 14px var(--body);color:var(--ink2)}
+.cell.menu a:hover{color:var(--ink)}
+@media(max-width:820px){.nav{grid-template-columns:1fr auto}.cell.live{display:none}.cell.menu{gap:12px}.cell.menu a{font-size:12px}}
+
+/* hero: giant sentence with inline photos */
+.hero{padding:clamp(40px,7vw,110px) 0 clamp(30px,4vw,60px)}
+.hero h1{font:600 clamp(44px,7.4vw,112px)/1.0 var(--head);letter-spacing:-.045em;margin:0;max-width:1200px}
+.inl{display:inline-block;height:.78em;aspect-ratio:5/4;object-fit:cover;vertical-align:-.1em;border-radius:6px;margin:0 .06em;filter:saturate(.9)}
+.hero .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;color:var(--ink2);font-size:15px}
+.pill{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font:600 15px var(--head);padding:13px 22px;border-radius:999px}
+.pill:hover{background:var(--blue)}
+
+/* colour-washed full-bleed photo like kalkbrenner */
+.wash{position:relative;margin:clamp(30px,4vw,60px) 0 0;height:min(78vh,720px);overflow:hidden;background:var(--blue)}
+.wash img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) contrast(1.15) brightness(1.05);mix-blend-mode:multiply;opacity:.95}
+.wash::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,0,0,.12) 1px,transparent 1.2px);background-size:3px 3px;pointer-events:none;opacity:.5}
+.wash .cap{position:absolute;left:clamp(16px,3vw,40px);bottom:24px;color:#fff;font:600 14px var(--body);letter-spacing:.02em;display:flex;gap:18px}
+.wash .cap span{opacity:.75}
+
+/* table like tour dates */
+.sec{padding:clamp(60px,8vw,120px) 0}
+.sec h2{font:600 clamp(34px,4.6vw,64px)/1.02 var(--head);letter-spacing:-.04em;margin:0 0 10px}
+.sec .lead{color:var(--ink2);max-width:560px;margin:0 0 34px;font-size:17px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:0 0 12px;border-bottom:1px solid var(--ink)}
+.tbl td{padding:18px 0;border-bottom:1px solid var(--line);font:600 17px var(--head);letter-spacing:-.01em;vertical-align:middle}
+.tbl td.dim{font:400 15px var(--body);color:var(--ink2)}
+.sw{display:inline-block;width:34px;height:12px;border-radius:2px;vertical-align:middle;margin-right:12px;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.sw.k::after{content:"";position:absolute;right:4px;top:0;bottom:0;width:8px;background:#c8102e}
+.sw.k1::before,.sw.k2::before{content:"";position:absolute;right:14px;top:0;bottom:0;width:2px;background:#fff;z-index:1}
+.sw.k2::before{width:6px;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 4px)}
+.tbl a{font:500 13px var(--body);color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:640px){.tbl .hide{display:none}}
+
+/* about as big sentence */
+.big{font:600 clamp(28px,3.6vw,52px)/1.12 var(--head);letter-spacing:-.035em;max-width:1100px;margin:0}
+.big .inl{height:.9em;border-radius:5px}
+.big em{font-style:normal;color:var(--blue)}
+
+/* photo cards like noho */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.card{aspect-ratio:4/5;overflow:hidden;background:var(--bg2);position:relative}
+.card img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:transform .6s}
+.card:hover img{transform:scale(1.04)}
+.card:nth-child(1){background:#e6e0d3}.card:nth-child(2){background:#dfe7fb}.card:nth-child(3){background:#e3ddd2}.card:nth-child(4){background:#d9d4cb}
+.card b{position:absolute;left:12px;bottom:10px;background:#fff;padding:5px 10px;border-radius:999px;font:500 12px var(--body)}
+@media(max-width:820px){.cards{grid-template-columns:1fr 1fr}}
+
+.foot{border-top:1px solid var(--ink);padding:26px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:500 13px var(--body);color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="cell name">Sonny Parlin</div>
+  <div class="cell live"><b>On the mat for</b><span id="live">19.05 years</span></div>
+  <nav class="cell menu"><a href="#">Story</a><a href="#">Belts</a><a href="#">Academy</a><a href="#">Competition</a><a href="#">Life</a></nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Sonny Parlin has been <img class="inl" src="../img/comp-ibjjf-standing.jpg" alt=""> getting choked since 2007, teaching it since 2015, and <img class="inl" src="../img/sonny-kate.jpg" alt="" style="object-position:50% 20%"> still loves Tuesdays.</h1>
+    <div class="meta">
+      <a class="pill" href="https://graciebradenton.com">Train with me</a>
+      <span>2nd degree black belt · Royce Gracie lineage</span>
+      <span>Bradenton, Florida</span>
+    </div>
+  </section>
+</main>
+
+<div class="wash">
+  <img src="../img/training-back-control.jpg" alt="">
+  <div class="cap"><span>Open mat</span><span>Gracie Bradenton</span><span>Back control</span></div>
+</div>
+
+<main class="wrap">
+  <section class="sec">
+    <h2>Every belt, in order.</h2>
+    <p class="lead">Seven promotions in nineteen years. The dates matter less than the Tuesdays in between.</p>
+    <table class="tbl">
+      <tr><th>Belt</th><th>Date</th><th class="hide">Where</th><th></th></tr>
+      <tr><td><i class="sw" style="background:#ebe8e1"></i>White</td><td class="dim">Sep 4, 2007</td><td class="dim hide">West Hartford, CT</td><td></td></tr>
+      <tr><td><i class="sw" style="background:#2a5bd7"></i>Blue</td><td class="dim">Jan 28, 2009</td><td class="dim hide">Promoted by Royce Gracie</td><td></td></tr>
+      <tr><td><i class="sw" style="background:#6f3fb0"></i>Purple</td><td class="dim">Jul 11, 2010</td><td class="dim hide">West Hartford, CT</td><td></td></tr>
+      <tr><td><i class="sw" style="background:#7c4b2a"></i>Brown</td><td class="dim">Jan 18, 2015</td><td class="dim hide">Tampa, FL</td><td></td></tr>
+      <tr><td><i class="sw k" style="background:#151515"></i>Black</td><td class="dim">Sep 3, 2017</td><td class="dim hide">Tampa, FL</td><td></td></tr>
+      <tr><td><i class="sw k k1" style="background:#151515"></i>1st degree</td><td class="dim">Sep 30, 2023</td><td class="dim hide">Tampa, FL</td><td></td></tr>
+      <tr><td><i class="sw k k2" style="background:#151515"></i>2nd degree</td><td class="dim">Jul 30, 2026</td><td class="dim hide">Promoted by Robby Donofrio</td><td><a href="#">Story</a></td></tr>
+    </table>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <p class="big">I opened <em>Gracie Bradenton</em> in 2015 with a handful of students and a lot of mats to pay for. <img class="inl" src="../img/gracie-bradenton-logo.png" alt="" style="aspect-ratio:1;border-radius:50%;background:#fff;padding:2px"> Eleven years later it is the friendliest room you will ever get choked in, and I run it with my partner <img class="inl" src="../img/sonny-kate.jpg" alt="" style="object-position:70% 20%"> Kate Young.</p>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <h2>Competition.</h2>
+    <p class="lead">White belt to black belt, more matches than I can remember, retired from the podium in 2018.</p>
+    <div class="cards">
+      <div class="card"><img src="../img/comp-hand-raised.jpg" alt=""><b>Hand raised</b></div>
+      <div class="card"><img src="../img/comp-flo-stream.jpg" alt=""><b>Grappling Pro</b></div>
+      <div class="card"><img src="../img/comp-seated-guard.jpg" alt=""><b>Seated guard</b></div>
+      <div class="card"><img src="../img/portrait-rashguard.jpg" alt="" style="object-position:50% 20%"><b>Before the whistle</b></div>
+    </div>
+  </section>
+
+  <div class="foot"><span>Proposal D · Mat White</span><span>Inspired by Noho, Paul Kalkbrenner, bleibtgleich</span></div>
+</main>
+
+<script>
+// live "on the mat for" counter, like a now-playing widget
+(function(){var s=new Date('2007-09-04T00:00:00'),el=document.getElementById('live');function t(){var y=(Date.now()-s)/31557600000;el.textContent=y.toFixed(6)+' years'}t();setInterval(t,250)})();
+</script>
+<script src="_switcher.js"></script>
+</body>
+</html>
