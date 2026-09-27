@@ -22,7 +22,7 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // Reveal-on-scroll.
-  var targets = document.querySelectorAll('.story > *, .chain li, .belts, .prof, .big, .academy-grid > *, .match, .cards, .life > *, .train-inner > *');
+  var targets = document.querySelectorAll('.story > *, .chain li, .belts, .prof, .big, .big-sub, .academy-grid > *, .match, .cards, .life > *, .train-inner > *');
   targets.forEach(function (el) { el.classList.add('reveal'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

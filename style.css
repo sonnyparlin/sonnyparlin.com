@@ -179,7 +179,8 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
 /* ---------- Academy ---------- */
 .academy { background: var(--bg-2); max-width: none; padding-left: 0; padding-right: 0; }
 .academy > * { max-width: var(--max); margin-left: auto; margin-right: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-.big { font: 600 clamp(28px, 3.6vw, 52px)/1.12 var(--head); letter-spacing: -0.035em; max-width: 1180px; margin: 0 0 clamp(40px, 5vw, 70px); }
+.big { font: 600 clamp(28px, 3.6vw, 52px)/1.12 var(--head); letter-spacing: -0.035em; max-width: 1180px; margin: 0 0 22px; }
+.big-sub { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.5; color: var(--ink-2); max-width: 720px; margin: 0 0 clamp(40px, 5vw, 70px); }
 .big .inl { height: 0.9em; border-radius: 5px; }
 .big em { font-style: normal; color: var(--blue); }
 .academy-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(24px, 4vw, 60px); align-items: start; }
