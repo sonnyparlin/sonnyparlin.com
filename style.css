@@ -28,6 +28,7 @@ body {
   overflow-x: hidden;
 }
 img { display: block; max-width: 100%; height: auto; }
+picture { display: contents; }
 a { color: inherit; }
 figure { margin: 0; }
 p { margin: 0 0 1.1em; }
@@ -54,6 +55,8 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
   transition: background 0.15s ease;
 }
 .pill:hover { background: var(--blue); }
+.pill.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.pill.ghost:hover { background: var(--ink); color: #fff; }
 
 /* inline photo inside a sentence */
 .inl {
@@ -67,6 +70,10 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
   filter: saturate(0.9);
 }
 .inl.logo { aspect-ratio: 1; border-radius: 50%; background: #fff; padding: 2px; height: 0.9em; }
+
+/* ---------- Skip link ---------- */
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; font: 600 14px var(--body); text-decoration: none; }
+.skip:focus { top: 12px; }
 
 /* ---------- Nav ---------- */
 .nav {
@@ -183,6 +190,21 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
 .facts td.dim { width: 120px; font: 600 12px var(--body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
 @media (max-width: 820px) { .academy-grid { grid-template-columns: 1fr; } }
 
+/* ---------- One match: video facade ---------- */
+.match { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(20px, 4vw, 48px); align-items: center; margin: 0 0 clamp(36px, 5vw, 60px); }
+.video { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; }
+.video img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .play { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: rgba(25,25,25,0.25); cursor: pointer; display: grid; place-items: center; transition: background 0.2s; }
+.video .play:hover { background: rgba(25,25,25,0.4); }
+.video .play span { width: 74px; height: 74px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+.video .play span::after { content: ""; border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent var(--ink); margin-left: 5px; }
+.match-copy h3 { font-size: clamp(24px, 2.6vw, 34px); margin: 0 0 10px; }
+.match-copy p { color: var(--ink-2); }
+.match-copy .kicker { margin-bottom: 12px; }
+.match-copy .pill { margin-top: 6px; }
+@media (max-width: 820px) { .match { grid-template-columns: 1fr; } }
+
 /* ---------- Competition cards ---------- */
 .cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .card { aspect-ratio: 4 / 5; overflow: hidden; background: var(--bg-2); border: 0; padding: 0; cursor: zoom-in; border-radius: 4px; }
@@ -196,6 +218,20 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
 .life p { font-size: 18px; color: var(--ink-2); }
 .life-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 10%; border-radius: 8px; filter: saturate(0.9); }
 @media (max-width: 820px) { .life { grid-template-columns: 1fr; } }
+
+/* ---------- Train ---------- */
+.train { background: var(--ink); color: var(--bg); }
+.train-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; padding-top: clamp(60px, 8vw, 110px); padding-bottom: clamp(60px, 8vw, 110px); }
+.train .kicker { color: var(--blue-2); }
+.train h2 { color: #fff; }
+.train .lead { color: rgba(241,238,233,0.72); margin-bottom: 0; }
+.train-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.train-links .pill { background: var(--bg); color: var(--ink); }
+.train-links .pill:hover { background: var(--blue); color: #fff; }
+.train-links .pill.ghost { background: transparent; color: var(--bg); box-shadow: inset 0 0 0 1.5px rgba(241,238,233,0.45); }
+.train-links .pill.ghost:hover { background: var(--bg); color: var(--ink); }
+.train-addr { font: 500 13px var(--body); color: rgba(241,238,233,0.55); margin-top: 6px; }
+@media (max-width: 820px) { .train-inner { grid-template-columns: 1fr; } }
 
 /* ---------- Footer ---------- */
 .foot { border-top: 1px solid var(--ink); padding-top: 26px; padding-bottom: 60px; }
@@ -211,7 +247,13 @@ h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; }
 .lightbox { border: 0; padding: 0; background: transparent; max-width: min(94vw, 1400px); max-height: 94vh; }
 .lightbox::backdrop { background: rgba(25, 25, 25, 0.92); }
 .lightbox img { max-width: min(94vw, 1400px); max-height: 88vh; width: auto; height: auto; margin: 0 auto; border-radius: 6px; }
-.lightbox-close { position: fixed; top: 16px; right: 20px; background: transparent; border: 0; color: #fff; font-size: 40px; line-height: 1; cursor: pointer; }
+.lightbox-close { position: fixed; top: 16px; right: 20px; background: transparent; border: 0; color: #fff; font-size: 40px; line-height: 1; cursor: pointer; z-index: 2; }
+.lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.12); color: #fff; font-size: 38px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 4px; transition: background 0.15s; z-index: 2; }
+.lightbox-nav:hover { background: rgba(255,255,255,0.28); }
+.lightbox-nav.prev { left: 18px; }
+.lightbox-nav.next { right: 18px; }
+.lightbox-count { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); margin: 0; color: rgba(255,255,255,0.7); font: 500 13px var(--body); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .lightbox-nav { width: 44px; height: 44px; font-size: 30px; } .lightbox-nav.prev { left: 8px; } .lightbox-nav.next { right: 8px; } }
 
 /* ---------- Reveal ---------- */
 @media (prefers-reduced-motion: no-preference) {
