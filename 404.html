@@ -32,10 +32,10 @@
     .belt { position: absolute; left: 0; right: 0; top: 50%; height: 14px; background: #151515; opacity: 0.9; transform: translateY(-50%) rotate(-3deg) scaleX(1.1); z-index: 0; pointer-events: none; }
     .belt::after { content: ""; position: absolute; right: 12%; top: 0; bottom: 0; width: 7%; background: #c8102e; }
     .belt::before { content: ""; position: absolute; right: 19.5%; top: 0; bottom: 0; width: 1.2%; background: repeating-linear-gradient(90deg, #fff 0 33%, transparent 33% 66%, #fff 66% 100%); }
-    .nf-body .mark { width: 96px; height: 96px; margin: 0 auto 28px; border-radius: 50%; box-shadow: 0 16px 40px rgba(25,25,25,0.22); animation: tilt 6s ease-in-out infinite; }
+    .nf-body .mark { width: 120px; height: 120px; margin: 0 auto 28px; border-radius: 50%; box-shadow: 0 16px 40px rgba(25,25,25,0.22); animation: tilt 6s ease-in-out infinite; }
     @keyframes tilt { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
     @media (prefers-reduced-motion: reduce) { .bg-logo, .nf-body .mark { animation: none; } }
-    @media (max-width: 640px) { .belt { display: none; } .nf-body .mark { width: 76px; height: 76px; } }
+    @media (max-width: 640px) { .belt { display: none; } .nf-body .mark { width: 96px; height: 96px; } }
   </style>
 </head>
 <body>
@@ -45,12 +45,12 @@
       <div class="cell live"><span>404</span></div>
     </header>
 
-    <div class="bg-logo" aria-hidden="true"><img src="/img/sp-logo-512.png" alt=""></div>
+    <div class="bg-logo" aria-hidden="true"><img src="/img/sp-badge.png" alt=""></div>
     <div class="belt" aria-hidden="true"></div>
 
     <div class="nf-body">
       <div>
-        <img class="mark" src="/img/sp-logo.png" alt="SP monogram" width="96" height="96">
+        <img class="mark" src="/img/sp-badge.png" alt="Sonny Parlin Brazilian Jiu Jitsu badge" width="120" height="120">
         <h1>You got <em>swept.</em></h1>
         <p>That page doesn't exist, or it tapped out a while ago. Everything about me lives on one page anyway, and it's one click away.</p>
         <div class="nf-actions">
